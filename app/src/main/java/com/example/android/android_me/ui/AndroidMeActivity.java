@@ -16,15 +16,15 @@
 
 package com.example.android.android_me.ui;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.example.android.android_me.R;
+import com.example.android.android_me.data.AndroidImageAssets;
 
 // This activity will display a custom Android image composed of three body parts: head, body, and legs
 public class AndroidMeActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +32,31 @@ public class AndroidMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_android_me);
 
         // Create a new head BodyPartFragment
-        BodyPartFragment headFragment = new BodyPartFragment();
+        HeadBodyPartFragment headFragment = new HeadBodyPartFragment();
 
         // TODO (4) Set the list of image id's for the head fragment and set the position to the second image in the list
+        headFragment.setImageIDs(AndroidImageAssets.getHeads());
+        headFragment.setListIndex(1);
 
         // Add the fragment to its container using a FragmentManager and a Transaction
         FragmentManager fragmentManager = getSupportFragmentManager();
 
+        // TODO (5) Create and display the body and leg BodyPartFragments
+        BodyBodyPartFragment bodyBodyPartFragment = new BodyBodyPartFragment();
+        bodyBodyPartFragment.setImageIDs(AndroidImageAssets.getBodies());
+        bodyBodyPartFragment.setListIndex(1);
+
+        LegBodyPartFragment legBodyPartFragment = new LegBodyPartFragment();
+        legBodyPartFragment.setImageIDs(AndroidImageAssets.getLegs());
+        legBodyPartFragment.setListIndex(1);
+
+
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
+                .add(R.id.body_container , bodyBodyPartFragment)
+                .add(R.id.leg_container, legBodyPartFragment)
                 .commit();
-
-        // TODO (5) Create and display the body and leg BodyPartFragments
-
     }
+
+
 }
