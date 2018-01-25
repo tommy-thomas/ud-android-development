@@ -32,7 +32,7 @@ public class AndroidMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_android_me);
 
         // Create a new head BodyPartFragment
-        HeadBodyPartFragment headFragment = new HeadBodyPartFragment();
+        BodyPartFragment headFragment = new BodyPartFragment();
 
         // TODO (4) Set the list of image id's for the head fragment and set the position to the second image in the list
         headFragment.setImageIDs(AndroidImageAssets.getHeads());
@@ -42,14 +42,13 @@ public class AndroidMeActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         // TODO (5) Create and display the body and leg BodyPartFragments
-        BodyBodyPartFragment bodyBodyPartFragment = new BodyBodyPartFragment();
+        BodyPartFragment bodyBodyPartFragment = new BodyPartFragment();
         bodyBodyPartFragment.setImageIDs(AndroidImageAssets.getBodies());
         bodyBodyPartFragment.setListIndex(1);
 
-        LegBodyPartFragment legBodyPartFragment = new LegBodyPartFragment();
+        BodyPartFragment legBodyPartFragment = new BodyPartFragment();
         legBodyPartFragment.setImageIDs(AndroidImageAssets.getLegs());
         legBodyPartFragment.setListIndex(1);
-
 
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
